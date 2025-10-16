@@ -1,5 +1,8 @@
-function update() {
-    
-}
+import { delta, getFPS, updateDelta } from "./core/delta.js";
 
-setInterval(update, 17);
+function update(time) {
+  updateDelta(time);
+  console.log(getFPS());
+  window.requestAnimationFrame(update);
+}
+window.requestAnimationFrame(update);
