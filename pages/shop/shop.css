@@ -1,0 +1,8 @@
+.card-container {
+  height: 90%;
+  top: 5%;
+  aspect-ratio: 0.71;
+  border-radius: 2% / 1.42%;
+  background-color: rgb(70, 70, 70);
+  position: absolute;
+}
