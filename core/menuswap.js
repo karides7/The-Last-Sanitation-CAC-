@@ -8,7 +8,7 @@ shopButton = document.getElementById(`shop-button`);
 loadoutButton = document.getElementById(`loadout-button`);
 battleButton = document.getElementById(`battle-button`);
 
-let container;
+var container;
 function createContainer() {
   if (document.getElementById(`container`) != null) {
     document.getElementById(`container`).remove();
@@ -20,7 +20,20 @@ function createContainer() {
   container.id = `container`;
   container.style.width = `80%`;
   container.style.height = `100%`;
+  container.style.left = `calc(300px + 5%)`;
 }
+
+menuButton.addEventListener(`click`, function () {
+  createContainer();
+  setTimeout(function () {
+    $(`#container`).load(`./pages/menu/menu.html`);
+    $.getScript(
+      "./pages/menu/menu.js",
+      function (script, textStatus, jqXHR) {}
+    );
+    document.body.style.overflowY = `visible`;
+  }, 500);
+});
 
 shopButton.addEventListener(`click`, function () {
   createContainer();
@@ -31,5 +44,26 @@ shopButton.addEventListener(`click`, function () {
       function (script, textStatus, jqXHR) {}
     );
     document.body.style.overflowY = `visible`;
-  }, 100);
+  }, 500);
+});
+
+loadoutButton.addEventListener(`click`, function () {
+  createContainer();
+  setTimeout(function () {
+    $(`#container`).load(`./pages/menu/menu.html`);
+    $.getScript(
+      "./pages/menu/menu.js",
+      function (script, textStatus, jqXHR) {}
+    );
+    document.body.style.overflowY = `visible`;
+  }, 500);
+});
+
+battleButton.addEventListener(`click`, function () {
+  createContainer();
+  setTimeout(function () {
+    $(`#container`).load(`./pages/map/map.html`);
+    $.getScript("./pages/map/map.js", function (script, textStatus, jqXHR) {});
+    document.body.style.overflowY = `visible`;
+  }, 500);
 });

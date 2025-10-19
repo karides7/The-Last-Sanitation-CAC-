@@ -7,7 +7,7 @@ startButton.onclick = function () {
   ui.id = `ui`;
   $(function () {
     $("#ui").load(`./pages/ui/ui.html`);
-    console.log(`e`);
+    $.getScript("./pages/ui/ui.js", function (script, textStatus, jqXHR) {});
     setTimeout(function () {
       $.getScript(
         "./core/menuswap.js",
