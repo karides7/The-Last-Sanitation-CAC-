@@ -1,25 +1,25 @@
 .card-container {
-  height: 90%;
-  top: 5%;
-  aspect-ratio: 0.71;
-  background-color: rgb(70, 70, 70);
-  border-radius: 5% / 3.33%;
-  position: absolute;
+	height: 90%;
+	top: 5%;
+	aspect-ratio: 0.71;
+	background-color: rgb(70, 70, 70);
+	border-radius: 5% / 3.33%;
+	position: absolute;
 }
 
 ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+	width: 0;
+	height: 0;
 }
 
 html {
-  overflow-y: hidden;
+	overflow-y: hidden;
 }
 
 button {
-  background-color: white;
+	background-color: white;
 }
 
 button:hover {
-  background-color: rgb(199, 199, 199);
+	background-color: rgb(199, 199, 199);
 }
