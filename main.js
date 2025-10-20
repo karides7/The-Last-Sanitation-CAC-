@@ -4,7 +4,7 @@ import { delta, getFPS, updateDelta } from "./core/delta.js";
 getData();
 
 function update(time) {
-  updateDelta(time);
-  window.requestAnimationFrame(update);
+    updateDelta(time);
+    window.requestAnimationFrame(update);
 }
 window.requestAnimationFrame(update);
