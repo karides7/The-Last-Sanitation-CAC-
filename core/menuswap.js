@@ -27,39 +27,35 @@ fadeContainer.style.left = `calc(300px + 5%)`;
 document.body.appendChild(fadeContainer);
 
 menuButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/menu/menu.html`);
 	}, 1500);
-	document.body.style.overflowY = `visible`;
 });
 
 shopButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/shop/shop.html`, drawShop);
 	}, 1500);
-	document.body.style.overflowY = `visible`;
 });
 
 loadoutButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/menu/menu.html`);
 	}, 1500);
-	document.body.style.overflowY = `visible`;
 });
 
 battleButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/map/map.html`);
 	}, 1500);
-	document.body.style.overflowY = `visible`;
 });
 
 gamblingButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/gambling/gambling.html`);
 	}, 1500);
