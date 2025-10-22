@@ -2,11 +2,13 @@ let menuButton;
 let shopButton;
 let loadoutButton;
 let battleButton;
+let gamblingButton;
 
 menuButton = document.getElementById(`menu-button`);
 shopButton = document.getElementById(`shop-button`);
 loadoutButton = document.getElementById(`loadout-button`);
 battleButton = document.getElementById(`battle-button`);
+gamblingButton = document.getElementById(`gambling-button`);
 
 var container;
 function createContainer() {
@@ -64,6 +66,15 @@ battleButton.addEventListener(`click`, function () {
   setTimeout(function () {
     $(`#container`).load(`./pages/map/map.html`);
     $.getScript("./pages/map/map.js", function (script, textStatus, jqXHR) {});
+    document.body.style.overflowY = `visible`;
+  }, 500);
+});
+
+gamblingButton.addEventListener(`click`, function () {
+  createContainer();
+  setTimeout(function () {
+    $(`#container`).load(`./pages/gambling/gambling.html`);
+    $.getScript("./pages/gambling/gambling.js", function (script, textStatus, jqXHR) {});
     document.body.style.overflowY = `visible`;
   }, 500);
 });
