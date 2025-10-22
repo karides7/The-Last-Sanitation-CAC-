@@ -4,10 +4,12 @@
 		<title>Levels</title>
 		<style>
 			.backimg {
-				width: 100%;
-				height: 100%;
+				height: 80%;
+				aspect-ratio: 1.75;
 				padding: 0;
 				position: absolute;
+				left: -2.5%;
+				top: 10%;
 				margin: 0;
 			}
 			body {
@@ -19,12 +21,17 @@
 				font-size: 20pt;
 				letter-spacing: -2px;
 				color: rgb(0, 0, 0);
+				background-color: white;
+				border: solid black 5px;
 			}
 		</style>
 	</head>
 	<body style="background-color: green">
 		<img class="backimg" src="/Resources/images/map.png" />
-		<h1 class="commonStyle" style="top: 27%; left: 3%; position: absolute">
+		<h1
+			class="commonStyle"
+			style="top: 34%; left: 6.5%; position: absolute"
+		>
 			Tompkins
 		</h1>
 		<h1 class="commonStyle" style="top: 26%; left: 16%; position: absolute">
@@ -57,20 +64,6 @@
 		<h1 class="commonStyle" style="top: 50%; left: 20%; position: absolute">
 			Congressional Office
 		</h1>
-		<button
-			class="commonStyle"
-			style="
-				font-size: 50pt;
-				position: absolute;
-				top: 75%;
-				left: 2.5%;
-				border-radius: 50%;
-				height: 15%;
-				width: 10%;
-				background-color: rgb(255, 255, 255);
-			"
-		>
-			Menu
-		</button>
+		<script src="map.js"></script>
 	</body>
 </html>

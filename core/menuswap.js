@@ -30,33 +30,33 @@ menuButton.addEventListener(`click`, function () {
 	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/menu/menu.html`);
-	}, 1500);
+	}, 500);
 });
 
 shopButton.addEventListener(`click`, function () {
 	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/shop/shop.html`, drawShop);
-	}, 1500);
+	}, 500);
 });
 
 loadoutButton.addEventListener(`click`, function () {
 	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/menu/menu.html`);
-	}, 1500);
+	}, 500);
 });
 
 battleButton.addEventListener(`click`, function () {
 	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/map/map.html`);
-	}, 1500);
+	}, 500);
 });
 
 gamblingButton.addEventListener(`click`, function () {
 	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
 		$(`#container`).load(`./pages/gambling/gambling.html`);
-	}, 1500);
+	}, 500);
 });

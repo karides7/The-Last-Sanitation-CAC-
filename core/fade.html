@@ -12,7 +12,7 @@
 				position: absolute;
 				top: 0px;
 				left: 0px;
-				animation: fadeInOut 3s;
+				animation: fadeInOut 1s;
 			}
 
 			@keyframes fadeInOut {
@@ -29,6 +29,12 @@
 		</style>
 	</head>
 	<body>
-		<div class="fade"></div>
+		<div id="fade" class="fade"></div>
+		<script>
+			setTimeout(function () {
+				let fadeDiv = document.getElementById(`fade`);
+				fadeDiv.remove();
+			}, 1000);
+		</script>
 	</body>
 </html>
