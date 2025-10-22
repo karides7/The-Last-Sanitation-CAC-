@@ -1,64 +1,66 @@
 import { drawShop } from "../pages/shop/shop.js";
 
-let menuButton;
-let shopButton;
-let loadoutButton;
-let battleButton;
-let gamblingButton;
+let menuButton = document.getElementById(`menu-button`);
+let shopButton = document.getElementById(`shop-button`);
+let loadoutButton = document.getElementById(`loadout-button`);
+let battleButton = document.getElementById(`battle-button`);
+let gamblingButton = document.getElementById(`gambling-button`);
 
-menuButton = document.getElementById(`menu-button`);
-shopButton = document.getElementById(`shop-button`);
-loadoutButton = document.getElementById(`loadout-button`);
-battleButton = document.getElementById(`battle-button`);
-gamblingButton = document.getElementById(`gambling-button`);
+let container;
+container = document.createElement(`div`);
+container.style.position = `absolute`;
+container.style.zIndex = -50;
+container.id = `container`;
+container.style.width = `80%`;
+container.style.height = `100%`;
+container.style.left = `calc(300px + 5%)`;
+document.body.appendChild(container);
 
-var container;
-function createContainer() {
-	if (document.getElementById(`container`) != null) {
-		document.getElementById(`container`).remove();
-	}
-	container = document.createElement(`div`);
-	document.body.appendChild(container);
-	container.style.position = `absolute`;
-	container.style.zIndex = -50;
-	container.id = `container`;
-	container.style.width = `80%`;
-	container.style.height = `100%`;
-	container.style.left = `calc(300px + 5%)`;
-}
-createContainer();
-
-function clearContainer() {
-	container.textContent = ``;
-}
+let fadeContainer;
+fadeContainer = document.createElement(`div`);
+fadeContainer.style.position = `absolute`;
+fadeContainer.style.zIndex = -50;
+fadeContainer.id = `fadeContainer`;
+fadeContainer.style.width = `80%`;
+fadeContainer.style.height = `100%`;
+fadeContainer.style.left = `calc(300px + 5%)`;
+document.body.appendChild(fadeContainer);
 
 menuButton.addEventListener(`click`, function () {
-	$(`#container`).load(`./pages/menu/menu.html`);
+	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/menu/menu.html`);
+	}, 1500);
 	document.body.style.overflowY = `visible`;
 });
 
 shopButton.addEventListener(`click`, function () {
-	$(`#container`).load(`./pages/shop/shop.html`, function () {
-		drawShop();
-	});
+	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/shop/shop.html`, drawShop);
+	}, 1500);
 	document.body.style.overflowY = `visible`;
 });
 
 loadoutButton.addEventListener(`click`, function () {
-	$(`#container`).load(`./pages/menu/menu.html`);
+	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/menu/menu.html`);
+	}, 1500);
 	document.body.style.overflowY = `visible`;
 });
 
 battleButton.addEventListener(`click`, function () {
-	$(`#container`).load(`./pages/map/map.html`);
+	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/map/map.html`);
+	}, 1500);
 	document.body.style.overflowY = `visible`;
 });
 
 gamblingButton.addEventListener(`click`, function () {
-  createContainer();
-  setTimeout(function () {
-    $(`#container`).load(`./pages/gambling/gambling.html`);
-    $.getScript("./pages/gambling/gambling.js", function (script, textStatus, jqXHR) {});
-    document.body.style.overflowY = `visible`;
-  }, 500);
+	$(`#fadeContainer`).load(`./core/fade/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/gambling/gambling.html`);
+	}, 1500);
 });

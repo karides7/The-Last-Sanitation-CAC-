@@ -19,19 +19,25 @@ export function drawShop() {
 		purchaseButton.style.left = `5%`;
 		purchaseButton.style.top = `83.5%`;
 		purchaseButton.style.borderRadius = `3%/15%`;
+		purchaseButton.style.margin = `0`;
+		purchaseButton.style.padding = `0`;
 		purchaseButton.style.border = `none`;
+		purchaseButton.style.display = `flex`;
+		purchaseButton.style.alignItems = `center`;
 		purchaseButton.id = `purchaseButton${i}`;
 
 		let purchaseButtonText = document.createElement(`p`);
 		purchaseButton.appendChild(purchaseButtonText);
-		purchaseButtonText.style.width = `70%`;
+		purchaseButtonText.style.width = `100%`;
 		purchaseButtonText.style.height = `20%`;
-		purchaseButtonText.style.left = `15%`;
-		purchaseButtonText.style.top = `20%`;
 		purchaseButtonText.style.position = `absolute`;
+
+		purchaseButtonText.style.zIndex = 50;
 		purchaseButtonText.textContent = `UNLOCK - 0 AWARENESS`;
 		purchaseButtonText.style.color = `rgb(165, 165, 165)`;
 		purchaseButtonText.style.fontWeight = `1000`;
+		purchaseButtonText.style.fontSize = `100%`;
+		purchaseButtonText.style.textAlign = `center`;
 
 		if (i === 10) {
 			shopContainer.style.width = `${462 * i}px`;
