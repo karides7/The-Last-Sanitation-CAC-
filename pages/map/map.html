@@ -4,7 +4,7 @@
 		<title>Levels</title>
 		<style>
 			.backimg {
-				height: 80%;
+				width: 80%;
 				aspect-ratio: 1.75;
 				padding: 0;
 				position: absolute;
@@ -18,52 +18,94 @@
 			}
 			.commonStyle {
 				font-family: monospace;
-				font-size: 20pt;
+				font-size: 175%;
 				letter-spacing: -2px;
 				color: rgb(0, 0, 0);
-				background-color: white;
-				border: solid black 5px;
+				outline: 5px;
+				background-color: rgb(255, 255, 255);
+				border: rgb(0, 0, 0) solid 0.3vw;
+				padding: 0.5%;
 			}
 		</style>
 	</head>
 	<body style="background-color: green">
 		<img class="backimg" src="/Resources/images/map.png" />
-		<h1
-			class="commonStyle"
-			style="top: 34%; left: 6.5%; position: absolute"
+		<div
+			style="
+				left: -0.75%;
+				width: 73.5%;
+				aspect-ratio: 1.75;
+				position: absolute;
+				top: 11%;
+			"
 		>
-			Tompkins
-		</h1>
-		<h1 class="commonStyle" style="top: 26%; left: 16%; position: absolute">
-			Cortland
-		</h1>
-		<h1 class="commonStyle" style="top: 26%; left: 29%; position: absolute">
-			Chenango
-		</h1>
-		<h1 class="commonStyle" style="top: 17%; left: 47%; position: absolute">
-			Osnego
-		</h1>
-		<h1 class="commonStyle" style="top: 45%; left: 47%; position: absolute">
-			Delaware
-		</h1>
-		<h1 class="commonStyle" style="top: 39%; left: 72%; position: absolute">
-			Greene
-		</h1>
-		<h1 class="commonStyle" style="top: 20%; left: 88%; position: absolute">
-			Rensselaer
-		</h1>
-		<h1 class="commonStyle" style="top: 40%; left: 87%; position: absolute">
-			Columbia
-		</h1>
-		<h1 class="commonStyle" style="top: 67%; left: 67%; position: absolute">
-			Ulster
-		</h1>
-		<h1 class="commonStyle" style="top: 76%; left: 53%; position: absolute">
-			Sullivan
-		</h1>
-		<h1 class="commonStyle" style="top: 50%; left: 20%; position: absolute">
-			Congressional Office
-		</h1>
-		<script src="map.js"></script>
+			<h1
+				class="commonStyle"
+				style="top: 30%; left: 7%; position: absolute"
+			>
+				TOMPKINS
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 27%; left: 18.25%; position: absolute"
+			>
+				CORTLAND
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 26%; left: 29.75%; position: absolute"
+			>
+				CHENANGO
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 17%; left: 47%; position: absolute"
+			>
+				OSWEGO
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 45%; left: 47%; position: absolute"
+			>
+				DELAWARE
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 39%; left: 72%; position: absolute"
+			>
+				GREENE
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 18%; left: 85%; position: absolute"
+			>
+				RENSSELAER
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 40%; left: 84%; position: absolute"
+			>
+				COLUMBIA
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 63%; left: 67%; position: absolute"
+			>
+				ULSTER
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 76%; left: 53%; position: absolute"
+			>
+				SULLIVAN
+			</h1>
+			<h1
+				class="commonStyle"
+				style="top: 47.5%; left: 26.5%; position: absolute"
+			>
+				BROOME
+			</h1>
+		</div>
+		<script src="./pages/map/map.js" type="module"></script>
 	</body>
 </html>

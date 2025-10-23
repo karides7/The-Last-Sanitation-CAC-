@@ -1,6 +1,7 @@
-const data = {
+export const data = {
 	exp: 0.0,
 	microplastics: 0.0,
+	currentLevel: 1,
 };
 
 export function getData() {

@@ -1,3 +1,4 @@
+import { setLabelIds } from "../pages/map/map.js";
 import { drawShop } from "../pages/shop/shop.js";
 
 let menuButton = document.getElementById(`menu-button`);
@@ -50,7 +51,7 @@ loadoutButton.addEventListener(`click`, function () {
 battleButton.addEventListener(`click`, function () {
 	$(`#fadeContainer`).load(`./core/fade.html`);
 	setTimeout(function () {
-		$(`#container`).load(`./pages/map/map.html`);
+		$(`#container`).load(`./pages/map/map.html`, setLabelIds);
 	}, 500);
 });
 
