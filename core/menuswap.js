@@ -1,5 +1,23 @@
-import { setLabelIds } from "../pages/map/map.js";
 import { drawShop } from "../pages/shop/shop.js";
+
+const countiesArr = [
+  `Tompkins`,
+  `Cortland`,
+  `Chenango`,
+  `Osnego`,
+  `Delaware`,
+  `Greene`,
+  `Rensselaer`,
+  `Columbia`,
+  `Ulster`,
+  `Sullivan`,
+  `Broome`,
+];
+let countiesRef = [];
+for (let i = 0; i < countiesArr.length; i++) {
+  countiesRef.push(document.getElementById(`${countiesArr[i]}`));
+}
+console.log(countiesRef);
 
 let menuButton = document.getElementById(`menu-button`);
 let shopButton = document.getElementById(`shop-button`);
@@ -28,36 +46,36 @@ fadeContainer.style.left = `calc(300px + 5%)`;
 document.body.appendChild(fadeContainer);
 
 menuButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade.html`);
-	setTimeout(function () {
-		$(`#container`).load(`./pages/menu/menu.html`);
-	}, 500);
+  $(`#fadeContainer`).load(`./core/fade.html`);
+  setTimeout(function () {
+    $(`#container`).load(`./pages/menu/menu.html`);
+  }, 500);
 });
 
 shopButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade.html`);
-	setTimeout(function () {
-		$(`#container`).load(`./pages/shop/shop.html`, drawShop);
-	}, 500);
+  $(`#fadeContainer`).load(`./core/fade.html`);
+  setTimeout(function () {
+    $(`#container`).load(`./pages/shop/shop.html`, drawShop);
+  }, 500);
 });
 
 loadoutButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade.html`);
-	setTimeout(function () {
-		$(`#container`).load(`./pages/menu/menu.html`);
-	}, 500);
+  $(`#fadeContainer`).load(`./core/fade.html`);
+  setTimeout(function () {
+    $(`#container`).load(`./pages/menu/menu.html`);
+  }, 500);
 });
 
 battleButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade.html`);
-	setTimeout(function () {
-		$(`#container`).load(`./pages/map/map.html`, setLabelIds);
-	}, 500);
+  $(`#fadeContainer`).load(`./core/fade.html`);
+  setTimeout(function () {
+    $(`#container`).load(`./pages/map/map.html`);
+  }, 500);
 });
 
 gamblingButton.addEventListener(`click`, function () {
-	$(`#fadeContainer`).load(`./core/fade.html`);
-	setTimeout(function () {
-		$(`#container`).load(`./pages/gambling/gambling.html`);
-	}, 500);
+  $(`#fadeContainer`).load(`./core/fade.html`);
+  setTimeout(function () {
+    $(`#container`).load(`./pages/gambling/gambling.html`);
+  }, 500);
 });
