@@ -1,24 +1,5 @@
 import { drawShop } from "../pages/shop/shop.js";
 
-const countiesArr = [
-  `Tompkins`,
-  `Cortland`,
-  `Chenango`,
-  `Osnego`,
-  `Delaware`,
-  `Greene`,
-  `Rensselaer`,
-  `Columbia`,
-  `Ulster`,
-  `Sullivan`,
-  `Broome`,
-];
-let countiesRef = [];
-for (let i = 0; i < countiesArr.length; i++) {
-  countiesRef.push(document.getElementById(`${countiesArr[i]}`));
-}
-console.log(countiesRef);
-
 let menuButton = document.getElementById(`menu-button`);
 let shopButton = document.getElementById(`shop-button`);
 let loadoutButton = document.getElementById(`loadout-button`);
@@ -28,7 +9,7 @@ let gamblingButton = document.getElementById(`gambling-button`);
 let container;
 container = document.createElement(`div`);
 container.style.position = `absolute`;
-container.style.zIndex = -50;
+container.style.zIndex = 100;
 container.id = `container`;
 container.style.width = `80%`;
 container.style.height = `100%`;
@@ -45,37 +26,63 @@ fadeContainer.style.height = `100%`;
 fadeContainer.style.left = `calc(300px + 5%)`;
 document.body.appendChild(fadeContainer);
 
+function loadLevel(level) {
+	console.log(level);
+}
+
+function MapButtons() {
+	const countiesArr = [
+		`Tompkins`,
+		`Cortland`,
+		`Chenango`,
+		`Osnego`,
+		`Delaware`,
+		`Greene`,
+		`Rensselaer`,
+		`Columbia`,
+		`Ulster`,
+		`Sullivan`,
+		`Broome`,
+	];
+
+	let countiesRef = [];
+	for (let i = 0; i < countiesArr.length; i++) {
+		countiesRef.push(document.getElementById(`${countiesArr[i]}`));
+	}
+}
+
 menuButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/menu/menu.html`);
-  }, 500);
+	$(`#fadeContainer`).load(`./core/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/menu/menu.html`);
+	}, 500);
 });
 
 shopButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/shop/shop.html`, drawShop);
-  }, 500);
+	$(`#fadeContainer`).load(`./core/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/shop/shop.html`, drawShop);
+	}, 500);
 });
 
 loadoutButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/menu/menu.html`);
-  }, 500);
+	$(`#fadeContainer`).load(`./core/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/menu/menu.html`);
+	}, 500);
 });
 
 battleButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/map/map.html`);
-  }, 500);
+	$(`#fadeContainer`).load(`./core/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/map/map.html`);
+		MapButtons();
+	}, 500);
 });
 
 gamblingButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/gambling/gambling.html`);
-  }, 500);
+	$(`#fadeContainer`).load(`./core/fade.html`);
+	setTimeout(function () {
+		$(`#container`).load(`./pages/gambling/gambling.html`);
+	}, 500);
 });

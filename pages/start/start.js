@@ -5,7 +5,5 @@ startButton.onclick = function () {
 	const ui = document.createElement(`div`);
 	document.body.appendChild(ui);
 	ui.id = `ui`;
-	$(function () {
-		$("#ui").load(`./pages/ui/ui.html`);
-	});
+	$("#ui").load(`./pages/ui/ui.html`);
 };

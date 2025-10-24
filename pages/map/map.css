@@ -1,0 +1,29 @@
+.backimg {
+	height: 80%;
+	aspect-ratio: 1.75;
+	padding: 0;
+	position: absolute;
+	left: -2.5%;
+	top: 10%;
+	margin: 0;
+	width: 86%;
+}
+body {
+	margin: 0;
+	padding: 0;
+}
+.commonStyle {
+	font-family: monospace;
+	font-size: 125%;
+	color: rgb(0, 0, 0);
+	background-color: white;
+	padding: 1%;
+	border: 0.4vh solid black;
+	font-weight: 1000;
+	z-index: 100;
+	pointer-events: all;
+}
+.commonStyle:hover {
+	left: 50%;
+	background-color: rgb(156, 156, 156) !important;
+}
