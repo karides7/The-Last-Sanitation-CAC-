@@ -1,9 +1,13 @@
 function showCapital() {
 	let exp = localStorage.getItem(`exp`);
 	let microplastics = localStorage.getItem(`microplastics`);
-	let stats = document.getElementById(`ui-stats`);
-	if (stats != null)
-		stats.textContent = `MICROPLASTICS: ${microplastics} AWARENESS: ${exp}`;
+	let microplasticsNumbers = document.getElementById(`microplastics`);
+	let awarenessNumbers = document.getElementById(`awareness`);
+
+	if (microplasticsNumbers != null)
+		microplasticsNumbers.textContent = `MICROPLASTICS: ${microplastics}`;
+	if (awarenessNumbers != null)
+		awarenessNumbers.textContent = `AWARENESS: ${exp}`;
 }
 
 showCapital();
