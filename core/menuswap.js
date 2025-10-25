@@ -31,8 +31,9 @@ function loadLevel(level) {
   console.log(level);
 }
 
+let countiesArr;
 function MapButtons() {
-  const countiesArr = [
+  countiesArr = [
     `Tompkins`,
     `Cortland`,
     `Chenango`,
