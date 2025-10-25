@@ -4,14 +4,15 @@ import { getInput12345 } from "../../core/input.js";
 
 console.log(`loaded Tompkins level.`);
 
+console.log(data);
+
 let selectedCardsArray = data.selectedCards;
 let selectedCardsData = [];
 let unitKeys = Object.keys(units);
 
 for (let i in selectedCardsArray) {
-	if (i > 0) {
-		selectedCardsData.push(units[unitKeys[i]]);
-	}
+	i++;
+	selectedCardsData.push(units[unitKeys[i]]);
 }
 
 console.log(selectedCardsData);
