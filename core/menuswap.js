@@ -19,11 +19,12 @@ document.body.appendChild(container);
 let fadeContainer;
 fadeContainer = document.createElement(`div`);
 fadeContainer.style.position = `absolute`;
-fadeContainer.style.zIndex = -50;
+fadeContainer.style.zIndex = 2222;
 fadeContainer.id = `fadeContainer`;
 fadeContainer.style.width = `80%`;
 fadeContainer.style.height = `100%`;
 fadeContainer.style.left = `calc(300px + 5%)`;
+fadeContainer.style.pointerEvents = `none`;
 document.body.appendChild(fadeContainer);
 
 function loadLevel(level) {
@@ -103,8 +104,6 @@ gamblingButton.addEventListener(`click`, function () {
     $(`#container`).load(`./pages/gambling/gambling.html`);
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
-    setTimeout(function () {
-      document.getElementById(`container`).style.display = `block`;
-    }, 500);
+    document.getElementById(`container`).style.display = `block`;
   }, 500);
 });
