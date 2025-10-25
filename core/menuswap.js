@@ -31,8 +31,13 @@ function loadLevel(level) {
   console.log(level);
 }
 
+let countiesArr;
 function MapButtons() {
+<<<<<<< HEAD
+  countiesArr = [
+=======
   var countiesArr = [
+>>>>>>> bb85b098949ff815189ed8dbdbddf45d778cde46
     `Tompkins`,
     `Cortland`,
     `Chenango`,
