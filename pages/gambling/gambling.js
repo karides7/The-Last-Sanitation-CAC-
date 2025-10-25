@@ -18,6 +18,16 @@ fadeContainer.style.height = `100%`;
 fadeContainer.style.left = `calc(300px + 5%)`;
 document.body.appendChild(fadeContainer);
 
+let backContainer;
+backContainer = document.createElement(`div`);
+backContainer.style.position = `absolute`;
+backContainer.id = `backContainer`;
+backContainer.style.width = `80%`;
+backContainer.style.height = `100%`;
+backContainer.style.left = `calc(300px + 5%)`;
+backContainer.style.zIndex = `20`;
+document.body.appendChild(backContainer);
+
 cheapButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
@@ -30,7 +40,5 @@ expensiveButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
     $(`#gamblingAnimation`).load(`/pages/ui/gambling/expensive.html`);
-    document.getElementById(`gamblingAnimation`).remove();
-    document.getElementById(`container`).style.display = `block`;
   }, 500);
 });

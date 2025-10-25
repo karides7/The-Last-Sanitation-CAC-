@@ -55,6 +55,8 @@ menuButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
     $(`#container`).load(`./pages/menu/menu.html`);
+    if (document.getElementById(`gamblingAnimation`) != null)
+      document.getElementById(`gamblingAnimation`).remove();
   }, 500);
 });
 
@@ -62,6 +64,8 @@ shopButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
     $(`#container`).load(`./pages/shop/shop.html`, drawShop);
+    if (document.getElementById(`gamblingAnimation`) != null)
+      document.getElementById(`gamblingAnimation`).remove();
   }, 500);
 });
 
@@ -69,6 +73,8 @@ loadoutButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
     $(`#container`).load(`./pages/menu/menu.html`);
+    if (document.getElementById(`gamblingAnimation`) != null)
+      document.getElementById(`gamblingAnimation`).remove();
   }, 500);
 });
 
@@ -76,6 +82,8 @@ battleButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
     $(`#container`).load(`./pages/map/map.html`);
+    if (document.getElementById(`gamblingAnimation`) != null)
+      document.getElementById(`gamblingAnimation`).remove();
     MapButtons();
   }, 500);
 });
