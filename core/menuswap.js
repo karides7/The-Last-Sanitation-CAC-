@@ -9,7 +9,7 @@ let gamblingButton = document.getElementById(`gambling-button`);
 let container;
 container = document.createElement(`div`);
 container.style.position = `absolute`;
-container.style.zIndex = 100;
+container.style.zIndex = `2`;
 container.id = `container`;
 container.style.width = `80%`;
 container.style.height = `100%`;
@@ -59,24 +59,32 @@ function MapButtons() {
   }
 }
 
+function canSwap() {
+  return true;
+}
+
 menuButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/menu/menu.html`);
-    if (document.getElementById(`gamblingAnimation`) != null)
-      document.getElementById(`gamblingAnimation`).remove();
-    document.getElementById(`container`).style.display = `block`;
-  }, 500);
+  if (canSwap()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
+    setTimeout(function () {
+      $(`#container`).load(`./pages/menu/menu.html`);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+    }, 500);
+  }
 });
 
 shopButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/shop/shop.html`, drawShop);
-    if (document.getElementById(`gamblingAnimation`) != null)
-      document.getElementById(`gamblingAnimation`).remove();
-    document.getElementById(`container`).style.display = `block`;
-  }, 500);
+  if (canSwap()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
+    setTimeout(function () {
+      $(`#container`).load(`./pages/shop/shop.html`, drawShop);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+    }, 500);
+  }
 });
 
 loadoutButton.addEventListener(`click`, function () {
@@ -90,24 +98,28 @@ loadoutButton.addEventListener(`click`, function () {
 });
 
 battleButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/map/map.html`);
-    if (document.getElementById(`gamblingAnimation`) != null)
-      document.getElementById(`gamblingAnimation`).remove();
-    document.getElementById(`container`).style.display = `block`;
+  if (canSwap()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
     setTimeout(function () {
-      MapButtons();
+      $(`#container`).load(`./pages/map/map.html`);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+      setTimeout(function () {
+        MapButtons();
+      }, 500);
     }, 500);
-  }, 500);
+  }
 });
 
 gamblingButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#container`).load(`./pages/gambling/gambling.html`);
-    if (document.getElementById(`gamblingAnimation`) != null)
-      document.getElementById(`gamblingAnimation`).remove();
-    document.getElementById(`container`).style.display = `block`;
-  }, 500);
+  if (canSwap()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
+    setTimeout(function () {
+      $(`#container`).load(`./pages/gambling/gambling.html`);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+    }, 500);
+  }
 });
