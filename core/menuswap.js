@@ -33,7 +33,11 @@ function loadLevel(level) {
 
 let countiesArr;
 function MapButtons() {
+<<<<<<< HEAD
   countiesArr = [
+=======
+  var countiesArr = [
+>>>>>>> bb85b098949ff815189ed8dbdbddf45d778cde46
     `Tompkins`,
     `Cortland`,
     `Chenango`,
@@ -66,6 +70,7 @@ menuButton.addEventListener(`click`, function () {
     $(`#container`).load(`./pages/menu/menu.html`);
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
+    document.getElementById(`container`).style.display = `block`;
   }, 500);
 });
 
@@ -75,6 +80,7 @@ shopButton.addEventListener(`click`, function () {
     $(`#container`).load(`./pages/shop/shop.html`, drawShop);
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
+    document.getElementById(`container`).style.display = `block`;
   }, 500);
 });
 
@@ -84,6 +90,7 @@ loadoutButton.addEventListener(`click`, function () {
     $(`#container`).load(`./pages/menu/menu.html`);
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
+    document.getElementById(`container`).style.display = `block`;
   }, 500);
 });
 
@@ -93,6 +100,7 @@ battleButton.addEventListener(`click`, function () {
     $(`#container`).load(`./pages/map/map.html`);
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
+    document.getElementById(`container`).style.display = `block`;
     setTimeout(function () {
       MapButtons();
     }, 500);
