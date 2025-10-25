@@ -49,6 +49,13 @@ function MapButtons() {
   for (let i = 0; i < countiesArr.length; i++) {
     countiesRef.push(document.getElementById(`${countiesArr[i]}`));
   }
+  for (let county of countiesRef) {
+    county.addEventListener(`click`, function () {
+      $(document.body).load(
+        `./levels/${county.id.toLowerCase()}/${county.id.toLowerCase()}.html`
+      );
+    });
+  }
 }
 
 menuButton.addEventListener(`click`, function () {
@@ -84,7 +91,9 @@ battleButton.addEventListener(`click`, function () {
     $(`#container`).load(`./pages/map/map.html`);
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
-    MapButtons();
+    setTimeout(function () {
+      MapButtons();
+    }, 500);
   }, 500);
 });
 
