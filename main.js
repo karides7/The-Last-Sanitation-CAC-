@@ -1,5 +1,6 @@
 import { getData } from "./core/data.js";
-import { delta, getFPS, updateDelta } from "./core/delta.js";
+import { updateDelta } from "./core/delta.js";
+import { getInput12345 } from "./core/input.js";
 
 getData();
 

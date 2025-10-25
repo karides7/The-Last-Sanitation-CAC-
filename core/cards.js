@@ -1,6 +1,7 @@
 export let units = {};
 
 units[`streetSweeper`] = {
+	name: `Street Sweeper`,
 	cost: 100,
 	health: 500,
 	attackSpeed: 1,

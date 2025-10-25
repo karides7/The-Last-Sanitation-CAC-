@@ -1,3 +1,6 @@
 class Cleaner {
-	constructor(cleanerType) {}
+	constructor(cleanerType) {
+		self.cleanerType = cleanerType;
+		self.data = `./pages/`;
+	}
 }

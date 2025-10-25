@@ -11,14 +11,14 @@ gamblingAnimation.style.zIndex = `-522`;
 document.body.appendChild(gamblingAnimation);
 
 cheapButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  setTimeout(function () {
-    $(`#gamblingAnimation`).load(`./pages/ui/gambling/cheap.html`);
-    document.getElementById(`container`).style.display = `none`;
-  }, 500);
+	$(`#fadeContainer`).load(`./core/fade.html`);
+	setTimeout(function () {
+		$(`#gamblingAnimation`).load(`./pages/ui/gambling/cheap.html`);
+		document.getElementById(`container`).style.display = `none`;
+	}, 500);
 });
 
 expensiveButton.addEventListener(`click`, function () {
-  $(`#fadeContainer`).load(`./core/fade.html`);
-  $(`#gamblingAnimation`).load(`/pages/ui/gambling/expensive.html`);
+	$(`#fadeContainer`).load(`./core/fade.html`);
+	$(`#gamblingAnimation`).load(`/pages/ui/gambling/expensive.html`);
 });
