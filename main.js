@@ -9,5 +9,3 @@ function update(time) {
 	window.requestAnimationFrame(update);
 }
 window.requestAnimationFrame(update);
-
-const sybau = document.getElementsByTagName(`button`);
