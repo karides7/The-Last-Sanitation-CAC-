@@ -133,3 +133,15 @@ gamblingButton.addEventListener(`click`, function () {
 		}, 500);
 	}
 });
+
+const sybau = document.getElementsByTagName('button');
+
+
+const clickSound = new Audio("resources/images/sfx/click1.mp3");
+
+for (let button of sybau) {
+  button.addEventListener('click', function() {
+    clickSound.play()
+  });
+}
+
