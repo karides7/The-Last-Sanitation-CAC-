@@ -30,7 +30,6 @@
 
       .start {
         position: absolute;
-        align-self: center;
         width: 300pt;
         height: 200pt;
         top: 65%;
@@ -39,6 +38,7 @@
         font-family: monospace;
         background-color: rgb(25, 130, 56);
         border-color: rgb(25, 130, 56);
+        justify-content: center;
       }
     </style>
   </head>
@@ -49,7 +49,9 @@
       <h1 style="top: -11%; position: absolute">The</h1>
       <h1 style="position: absolute; top: 2%">Last</h1>
       <h1 style="top: 15%; position: absolute">Sanitation</h1>
-      <button class="start" id="start button">Start here</button>
+      <button class="start" id="start button" style="cursor: pointer">
+        Start here
+      </button>
     </div>
     <script src="./pages/start/start.js" type="module"></script>
   </body>

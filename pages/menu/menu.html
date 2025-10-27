@@ -3,22 +3,30 @@
   <head>
     <link rel="stylesheet" href="./pages/menu/menu.css" />
     <style>
-      h1 {
+      span {
         font-family: monospace;
         position: absolute;
         text-align: center;
         font-size: 100pt;
         margin: 0;
+        left: 10%;
+      }
+      #language {
+        position: absolute;
+        top: 30%;
+        left: 10%;
       }
     </style>
   </head>
   <body style="margin: 0; padding: 0; background-color: rgb(0, 0, 0)">
-    <h1>
-      my heart so cold i think i'm done with ice
-    </h1>
-    <form >
-      <input type="text">
-    </form>
+    <h1><span>Settings</span></h1>
+    <div id="language">
+      <label>Pick a Language</label>
+      <form id="languageForm">
+        <input type="text" />
+      </form>
+      <p></p>
+    </div>
     <script src="./pages/menu/menu.js" type="module"></script>
   </body>
 </html>
