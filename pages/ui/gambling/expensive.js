@@ -1,12 +1,14 @@
-expensiveButton.addEventListener(`click`, function () {
+let gumballImage = document.getElementById("gumball");
+
+gumballImage.addEventListener(`click`, function () {
+  if (gumballImage.src === "/resources/images/gumballs/red gumball.png") {
+    gumballImage.src = "/resources/images/gumballs/red gumball part 2.png";
+  }
   if (
-    document.getElementById("gumball").src ==
-    "/Resources/images/gumballs/red gumball.png"
+    (gumballImage.src = "/resources/images/gumballs/red gumball part 2.png")
   ) {
-    document.getElementById("gumball").src =
-      "/Resources/images/gumballs/red gumball part 2.png";
+    gumballImage.src = "/resources/images/gumballs/red gumball part 3.png";
   } else {
-    document.getElementById("gumball").src =
-      "/Resources/images/gumballs/red gumball part 3.png";
+    gumballImage.src = "/resources/images/gumballs/red gumball part 3.png";
   }
 });
