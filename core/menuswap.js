@@ -136,10 +136,10 @@ let hoverSound = new Audio("resources/images/sfx/hovering mouse.mp3");
 for (let button of sybau) {
 	button.addEventListener("mouseover", function () {
 		hoverSound.currentTime = 0;
-		hoverSound.play();
+		//hoverSound.play();
 	});
 	button.addEventListener("click", function () {
 		clickSound.currentTime = 0;
-		clickSound.play();
+		//clickSound.play();
 	});
 }
