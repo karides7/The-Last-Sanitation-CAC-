@@ -1,14 +1,19 @@
+import {gumballColor } from "../../gambling/gambling.js";
+
 let gumballImage = document.getElementById("gumball");
 
+const gumballArray = [`green gumball`, `red gumball`, `yellow gumball`];
+
+
 gumballImage.addEventListener(`click`, function () {
-  if (gumballImage.src === "/resources/images/gumballs/red gumball.png") {
-    gumballImage.src = "/resources/images/gumballs/red gumball part 2.png";
+  if (gumballImage.src.endsWith("gumball.png")) {
+    gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]} part 2.png`;
   }
-  if (
-    (gumballImage.src = "/resources/images/gumballs/red gumball part 2.png")
+  else if (
+    (gumballImage.src.endsWith("2.png"))
   ) {
-    gumballImage.src = "/resources/images/gumballs/red gumball part 3.png";
+    gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]} part 3.png`;
   } else {
-    gumballImage.src = "/resources/images/gumballs/red gumball part 3.png";
+    gumballImage.remove();
   }
 });

@@ -1,10 +1,11 @@
-spawned_enemies = [];
-spawned_cleaners = [];
+import { Cleaner, cleanerInstances } from "./units/cleaners.js";
 
-let container = document.createElement(`div`);
-container.style.width = `100%`;
-container.style.height = `100%`;
-document.body.appendChild(container);
-container.id = `container`;
+$("#container").load(`./pages/ui/battle/battle.html`);
 
-$("#container").load(`../../pages/ui/battle/battle.html`);
+new Cleaner(`streetSweeper`);
+
+setTimeout(function () {
+	for (let cleaner of cleanerInstances) {
+		document.getElementById(`container`).appendChild(cleaner.container);
+	}
+}, 1000);
