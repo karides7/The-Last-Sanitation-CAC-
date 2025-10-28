@@ -48,7 +48,6 @@ function MapButtons() {
     countiesRef.push(document.getElementById(`${countiesArr[i]}`));
   }
   for (let county of countiesRef) {
-    console.log(county);
     county.addEventListener(`click`, function () {
       $(document.body).load(
         `./levels/${county.id.toLowerCase()}/${county.id.toLowerCase()}.html`
