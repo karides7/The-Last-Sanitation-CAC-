@@ -1,4 +1,7 @@
+export let gumballColor = (Math.ceil(Math.random() * 3) - 1)
+
 function main() {
+
 	let cheapButton = document.getElementById(`cheap`);
 	let expensiveButton = document.getElementById(`expensive`);
 
@@ -21,7 +24,10 @@ function main() {
 
 	expensiveButton.addEventListener(`click`, function () {
 		$(`#fadeContainer`).load(`./core/fade.html`);
-		$(`#gamblingAnimation`).load(`/pages/ui/gambling/expensive.html`);
+		setTimeout(function () {
+			$(`#gamblingAnimation`).load(`./pages/ui/gambling/expensive.html`);
+			document.getElementById(`container`).style.display = `none`;
+		}, 500);
 	});
 }
 main();
