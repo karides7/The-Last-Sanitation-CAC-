@@ -1,7 +1,11 @@
-import { cleanerInstances } from "./units/cleaners";
+import { Cleaner, cleanerInstances } from "./units/cleaners.js";
 
-$("#container").load(`../../pages/ui/battle/battle.html`);
+$("#container").load(`./pages/ui/battle/battle.html`);
 
-for (let cleaner of cleanerInstances) {
-	document.getElementById(`container`).append(cleaner);
-}
+new Cleaner(`streetSweeper`);
+
+setTimeout(function () {
+	for (let cleaner of cleanerInstances) {
+		document.getElementById(`container`).appendChild(cleaner.container);
+	}
+}, 1000);

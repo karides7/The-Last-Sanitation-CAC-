@@ -1,30 +1,30 @@
-import { units } from "../cards";
-import { trashInstances } from "./trash";
+import { units } from "../cards.js";
+import { trashInstances } from "./trash.js";
 
 export const cleanerInstances = [];
 
-class Cleaner {
+export class Cleaner {
 	constructor(cleanerType) {
-		self.cleanerType = cleanerType;
-		self.data = units[cleanerType];
-		self.position = 100; // in percentage
-		self.speedMultiplier = 1;
+		this.cleanerType = cleanerType;
+		this.data = units[cleanerType];
+		this.position = 100; // in percentage
+		this.speedMultiplier = 1;
 
-		self.container = document.createElement(`div`);
-		self.container.style.height = `20%`;
+		this.container = document.createElement(`div`);
+		this.container.className = `${cleanerType}`;
+		this.container.style.height = `20%`;
+		cleanerInstances.push(this);
 	}
 	stun() {
-		self.speedMultiplier = 0.5;
+		this.speedMultiplier = 0.5;
 		setTimeout(function () {
-			self.stunned = false;
+			this.stunned = false;
 		}, 500);
 	}
 	step(delta) {
-		self.position -= speed * delta;
+		this.position -= speed * delta;
 		for (let trashMonster of trashInstances) {
 			// get the monsters distance and stats
 		}
 	}
 }
-
-let cleaner = new Cleaner();
