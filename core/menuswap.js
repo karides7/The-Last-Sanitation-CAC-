@@ -2,7 +2,7 @@ import { drawShop } from "../pages/shop/shop.js";
 
 let menuButton = document.getElementById(`menu-button`);
 let shopButton = document.getElementById(`shop-button`);
-let loadoutButton = document.getElementById(`loadout-button`);
+let loadoutButton = document.getElementById(`mission-button`);
 let battleButton = document.getElementById(`battle-button`);
 let gamblingButton = document.getElementById(`gambling-button`);
 
@@ -136,10 +136,10 @@ let hoverSound = new Audio("resources/images/sfx/hovering mouse.mp3");
 for (let button of sybau) {
   button.addEventListener("mouseover", function () {
     hoverSound.currentTime = 0;
-    hoverSound.play();
+    //hoverSound.play();
   });
   button.addEventListener("click", function () {
     clickSound.currentTime = 0;
-    clickSound.play();
+    //clickSound.play();
   });
 }

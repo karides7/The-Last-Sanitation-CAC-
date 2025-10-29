@@ -1,11 +1,19 @@
+import { delta } from "./delta.js";
 import { Cleaner, cleanerInstances } from "./units/cleaners.js";
 
-$("#container").load(`./pages/ui/battle/battle.html`);
+export function loadBattleUI() {
+	$("#container").load(`./pages/ui/battle/battle.html`);
+}
 
-new Cleaner(`streetSweeper`);
-
-setTimeout(function () {
+export function drawCleaners() {
 	for (let cleaner of cleanerInstances) {
+		console.log(cleaner);
 		document.getElementById(`container`).appendChild(cleaner.container);
 	}
-}, 1000);
+}
+
+export function moveCleaners(delta) {
+	for (let cleaner of cleanerInstances) {
+		cleaner.step(delta);
+	}
+}

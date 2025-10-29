@@ -1,10 +1,8 @@
+import { drawCleaners, loadBattleUI } from "../../core/battle.js";
 import { units } from "../../core/cards.js";
 import { data } from "../../core/data.js";
 import { getInput12345 } from "../../core/input.js";
-
-console.log(`loaded Tompkins level.`);
-
-console.log(data);
+import { Cleaner } from "../../core/units/cleaners.js";
 
 let selectedCardsArray = data.selectedCards;
 let selectedCardsData = [];
@@ -15,14 +13,15 @@ for (let i in selectedCardsArray) {
 	selectedCardsData.push(units[unitKeys[i]]);
 }
 
-console.log(selectedCardsData);
+new Cleaner(`streetSweeper`);
+
+loadBattleUI();
+setTimeout(drawCleaners, 100);
 
 let input;
 setInterval(function () {
 	input = getInput12345();
 }, 500);
-
-let cooldowns = [false, false, false, false, false];
 
 for (let i in input) {
 	if (input[i] && !cooldowns[i]) {
