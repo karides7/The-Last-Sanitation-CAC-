@@ -1,8 +1,9 @@
-import { drawCleaners, loadBattleUI } from "../../core/battle.js";
+import { drawUnits, loadBattleUI } from "../../core/battle.js";
 import { units } from "../../core/cards.js";
 import { data } from "../../core/data.js";
 import { getInput12345 } from "../../core/input.js";
 import { Cleaner } from "../../core/units/cleaners.js";
+import { Trash } from "../../core/units/trash.js";
 
 let selectedCardsArray = data.selectedCards;
 let selectedCardsData = [];
@@ -14,9 +15,10 @@ for (let i in selectedCardsArray) {
 }
 
 new Cleaner(`streetSweeper`);
+new Trash(`trash1`);
 
 loadBattleUI();
-setTimeout(drawCleaners, 100);
+setTimeout(drawUnits, 100);
 
 let input;
 setInterval(function () {
