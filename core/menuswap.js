@@ -134,7 +134,6 @@ const sybau = document.getElementsByTagName("button");
 let clickSound = new Audio("resources/images/sfx/click1.mp3");
 let hoverSound = new Audio("resources/images/sfx/hovering mouse.mp3");
 for (let button of sybau) {
-<<<<<<< HEAD
   button.addEventListener("mouseover", function () {
     hoverSound.currentTime = 0;
     hoverSound.play();
@@ -143,14 +142,4 @@ for (let button of sybau) {
     clickSound.currentTime = 0;
     clickSound.play();
   });
-=======
-	button.addEventListener("mouseover", function () {
-		hoverSound.currentTime = 0;
-		//hoverSound.play();
-	});
-	button.addEventListener("click", function () {
-		clickSound.currentTime = 0;
-		//clickSound.play();
-	});
->>>>>>> 4a445b8be78004425ad0b40641c0ad2477734f7c
 }
