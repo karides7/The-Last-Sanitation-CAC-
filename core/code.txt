@@ -1,0 +1,919 @@
+import { units } from "../cards.js";
+import { trashInstances } from "./trash.js";
+
+export const cleanerInstances = [];
+
+export class Cleaner {
+	constructor(cleanerType) {
+		this.cleanerType = cleanerType;
+		this.data = units[cleanerType];
+		this.position = 12.5;
+		this.speedMultiplier = 1;
+		this.health = this.data.health;
+		this.startingHealth = this.health;
+		this.time = 0;
+
+		this.moving = true;
+		this.attacking = false;
+
+		this.container = document.createElement(`div`);
+		this.container.className = `${cleanerType}`;
+		this.container.style.position = `absolute`;
+
+		this.container.style.height = `20%`;
+		this.container.style.top = `52.5%`;
+		this.container.style.left = `80%`;
+		this.container.style.aspectRatio = `.4`;
+
+		this.sprite = document.createElement(`img`);
+		this.container.appendChild(this.sprite);
+
+		this.sprite.style.position = `absolute`;
+		this.sprite.style.transform = `translate(-32%)`;
+		this.sprite.style.aspectRatio = `1.25`;
+		this.sprite.style.height = `100%`;
+
+		this.createHealthMeter();
+		this.updateHealthMeter();
+
+		cleanerInstances.push(this);
+	}
+
+	createHealthMeter() {
+		this.healthContainer = document.createElement(`div`);
+		this.container.appendChild(this.healthContainer);
+
+		this.healthContainer.style.height = `5%`;
+		this.healthContainer.style.width = `150%`;
+		this.healthContainer.style.position = `absolute`;
+		this.healthContainer.style.left = `-25%`;
+		this.healthContainer.style.backgroundColor = `black`;
+		this.healthContainer.style.transform = `translate(0, -200%)`;
+
+		this.healthContainer.style.height = `5%`;
+		this.healthContainer.style.width = `150%`;
+		this.healthContainer.style.position = `absolute`;
+		this.healthContainer.style.left = `-25%`;
+		this.healthContainer.style.backgroundColor = `black`;
+		this.healthContainer.style.transform = `translate(0, -200%)`;
+
+		this.healthContainerInternal = document.createElement(`div`);
+		this.healthContainer.appendChild(this.healthContainerInternal);
+
+		this.healthContainerInternal.style.position = `absolute`;
+		this.healthContainerInternal.style.height = `80%`;
+		this.healthContainerInternal.style.backgroundColor = `red`;
+		this.healthContainerInternal.style.left = `1.75%`;
+		this.healthContainerInternal.style.top = `10%`;
+	}
+
+	step(delta) {
+		this.time += delta / 400;
+		if (this.moving) {
+			if (Math.round(this.time) % 2 == 0) {
+				this.sprite.src = this.data[`images`][`movementFrames`][0];
+			} else {
+				this.sprite.src = this.data[`images`][`movementFrames`][1];
+			}
+
+			if (this.position < 76.5) {
+				this.position += this.speedMultiplier * delta * 0.008;
+			} else {
+				this.moving = false;
+			}
+			this.container.style.left = `${this.position}%`;
+		} else {
+			this.sprite.src = this.data[`images`][`idleFrame`];
+		}
+
+		for (let trash of trashInstances) {
+			let distance = Math.abs(trash.position - this.position);
+			if (distance < 10) {
+				this.moving = false;
+				this.attacking = true;
+			}
+			if (this.attacking) {
+				if (distance < 10) {
+					trash.health -= (delta / 10) * this.data.damage;
+					trash.updateHealthMeter();
+				}
+
+				if (Math.round(this.time) % 2 == 0) {
+					this.sprite.src = this.data[`images`][`attackFrames`][0];
+				} else {
+					this.sprite.src = this.data[`images`][`attackFrames`][1];
+				}
+			}
+		}
+
+		if (this.health <= 0) {
+			cleanerInstances.splice(cleanerInstances.indexOf(this), 1);
+			this.container.remove();
+			delete this;
+			this.moving = true;
+		}
+
+		if (trashInstances.length == 0 && this.position < 76.5) {
+			this.moving = true;
+		}
+	}
+
+	updateHealthMeter() {
+		this.healthContainerInternal.style.width = `${
+			(this.health / this.startingHealth) * 96.5
+		}%`;
+	}
+}
+
+import { units } from "../cards.js";
+import { cleanerInstances } from "./cleaners.js";
+
+export const trashInstances = [];
+
+export class Trash {
+	constructor(trashType) {
+		this.trashType = trashType;
+		this.data = units[trashType];
+		this.position = 80;
+		this.speedMultiplier = 1;
+		this.health = this.data.health;
+		this.startingHealth = this.health;
+		this.time = 0;
+
+		this.moving = true;
+		this.attacking = false;
+
+		this.container = document.createElement(`div`);
+		this.container.className = `trash`;
+		this.container.style.position = `absolute`;
+
+		this.container.style.height = `20%`;
+		this.container.style.top = `52.5%`;
+		this.container.style.left = `80%`;
+		this.container.style.aspectRatio = `.4`;
+
+		this.sprite = document.createElement(`img`);
+		this.container.appendChild(this.sprite);
+
+		this.sprite.style.position = `absolute`;
+		this.sprite.style.transform = `translate(-15%) scaleX(-1)`;
+		this.sprite.style.aspectRatio = `1.25`;
+		this.sprite.style.height = `100%`;
+		this.sprite.style.width = `150%`;
+		this.sprite.style.filter = `drop-shadow(0px 0px 10px rgb(0, 0, 0, 0.75));`;
+
+		this.createHealthMeter();
+		this.updateHealthMeter();
+
+		trashInstances.push(this);
+	}
+
+	createHealthMeter() {
+		this.healthContainer = document.createElement(`div`);
+		this.container.appendChild(this.healthContainer);
+
+		this.healthContainer.style.height = `5%`;
+		this.healthContainer.style.width = `150%`;
+		this.healthContainer.style.position = `absolute`;
+		this.healthContainer.style.left = `-25%`;
+		this.healthContainer.style.backgroundColor = `black`;
+		this.healthContainer.style.transform = `translate(0, -200%)`;
+
+		this.healthContainer.style.height = `5%`;
+		this.healthContainer.style.width = `150%`;
+		this.healthContainer.style.position = `absolute`;
+		this.healthContainer.style.left = `-25%`;
+		this.healthContainer.style.backgroundColor = `black`;
+		this.healthContainer.style.transform = `translate(0, -200%)`;
+
+		this.healthContainerInternal = document.createElement(`div`);
+		this.healthContainer.appendChild(this.healthContainerInternal);
+
+		this.healthContainerInternal.style.position = `absolute`;
+		this.healthContainerInternal.style.height = `80%`;
+		this.healthContainerInternal.style.backgroundColor = `red`;
+		this.healthContainerInternal.style.left = `1.75%`;
+		this.healthContainerInternal.style.top = `10%`;
+	}
+
+	step(delta) {
+		this.time += delta / 400;
+
+		if (this.moving) {
+			if (Math.round(this.time) % 2 == 0) {
+				this.sprite.src = this.data[`images`][`movementFrames`][0];
+			} else {
+				this.sprite.src = this.data[`images`][`movementFrames`][1];
+			}
+
+			if (this.position > 28) {
+				this.position -= this.speedMultiplier * delta * 0.008;
+			} else {
+				this.moving = false;
+			}
+			this.container.style.left = `${this.position}%`;
+		} else {
+			this.sprite.src = this.data[`images`][`idleFrame`];
+		}
+
+		for (let cleaner of cleanerInstances) {
+			let distance = Math.abs(cleaner.position - this.position);
+			if (distance < 10) {
+				this.moving = false;
+				this.attacking = true;
+			} else {
+				this.attacking = false;
+				if (this.position < 28) {
+					this.moving = true;
+				}
+			}
+			if (this.attacking) {
+				cleaner.health -= (delta / 10) * this.data.damage;
+				cleaner.updateHealthMeter();
+
+				this.sprite.src = this.data[`images`][`attackFrames`][0];
+			}
+		}
+
+		if (this.health <= 0) {
+			trashInstances.splice(trashInstances.indexOf(this), 1);
+			this.container.remove();
+			delete this;
+			this.moving = true;
+		}
+
+		if (trashInstances.length == 0 && this.position > 28) {
+			this.moving = true;
+		}
+	}
+
+	updateHealthMeter() {
+		this.healthContainerInternal.style.width = `${
+			(this.health / this.startingHealth) * 96.5
+		}%`;
+	}
+}
+
+import { delta } from "./delta.js";
+import { Cleaner, cleanerInstances } from "./units/cleaners.js";
+import { trashInstances } from "./units/trash.js";
+
+export function loadBattleUI() {
+	$("#container").load(`./pages/ui/battle/battle.html`);
+}
+
+export function drawUnits() {
+	for (let cleaner of cleanerInstances)
+		document.getElementById(`container`).appendChild(cleaner.container);
+	for (let trash of trashInstances)
+		document.getElementById(`container`).appendChild(trash.container);
+}
+
+export function moveUnits(delta) {
+	for (let cleaner of cleanerInstances) cleaner.step(delta);
+	for (let trash of trashInstances) trash.step(delta);
+}
+
+export let units = {};
+
+units[`streetSweeper`] = {
+	name: `Street Sweeper`,
+	friendly: true,
+	cost: 100,
+	health: 500,
+	attackSpeed: 1,
+	attackMelee: 10,
+	attackRanged: 0,
+	attackSplash: 0,
+	images: {
+		idleFrames: [],
+		movementFrames: [],
+		attackFrames: [],
+	},
+};
+
+units[`squirtMan`] = {
+	name: `Squirt Man`,
+	friendly: true,
+	cost: 100,
+	health: 500,
+	damage: 1,
+	images: {
+		idleFrame: `./resources/images/units/squirtMan/1.png`,
+		movementFrames: [
+			`./resources/images/units/squirtMan/2.png`,
+			`./resources/images/units/squirtMan/3.png`,
+		],
+		attackFrames: [
+			`./resources/images/units/squirtMan/4.png`,
+			`./resources/images/units/squirtMan/5.png`,
+		],
+	},
+};
+
+units[`roomba`] = {
+	friendly: true,
+	cost: 300,
+	health: 250,
+	attackInterval: 0.25,
+	attackMelee: 3,
+	attackRanged: 0,
+	attackSplash: 0,
+	images: {
+		idleFrames: [],
+		movementFrames: [],
+		attackFrames: [],
+	},
+};
+
+units[`trash`] = {
+	friendly: false,
+	health: 250,
+	attackInterval: 0.25,
+	damage: 0.5,
+	attackRanged: 0,
+	attackSplash: 0,
+	images: {
+		idleFrame: `./resources/images/units/trash/1.png`,
+		movementFrames: [
+			`./resources/images/units/trash/1.png`,
+			`./resources/images/units/trash/3.png`,
+		],
+		attackFrames: [`./resources/images/units/trash/2.png`],
+	},
+};
+
+export const data = {
+	exp: 0.0,
+	microplastics: 0.0,
+	currentLevel: 1,
+	selectedCards: 10000,
+};
+
+export function getData() {
+	let x = 0;
+	for (let key of Object.keys(data)) {
+		if (localStorage.getItem(key) != null) {
+			data[key] = localStorage.getItem(key);
+		} else {
+			localStorage.setItem(key, data[key]);
+		}
+		x++;
+	}
+}
+
+export let delta;
+
+export function getFPS() {
+	return 1000 / delta;
+}
+
+let t1 = 0;
+export function updateDelta(t2) {
+	delta = t2 - t1;
+	t1 = t2;
+}
+
+let input12345 = [false, false, false, false, false];
+
+export function getInput12345() {
+	let returnValue = input12345;
+	input12345 = [false, false, false, false, false];
+	return returnValue;
+}
+
+addEventListener(`keydown`, function (event) {
+	let key = event.key;
+	if (key == `1`) input12345[0] = true;
+	if (key == `2`) input12345[1] = true;
+	if (key == `3`) input12345[2] = true;
+	if (key == `4`) input12345[3] = true;
+	if (key == `5`) input12345[4] = true;
+	input12345 = input12345;
+});
+
+import { drawShop } from "../pages/shop/shop.js";
+
+let menuButton = document.getElementById(`menu-button`);
+let shopButton = document.getElementById(`shop-button`);
+let loadoutButton = document.getElementById(`mission-button`);
+let battleButton = document.getElementById(`battle-button`);
+let gamblingButton = document.getElementById(`gambling-button`);
+let backExpensive = document.getElementById(`backExpensive`);
+
+let container;
+container = document.createElement(`div`);
+container.style.position = `absolute`;
+container.style.zIndex = `2`;
+container.id = `container`;
+container.style.width = `80%`;
+container.style.height = `100%`;
+container.style.left = `calc(300px + 5%)`;
+document.body.appendChild(container);
+
+let fadeContainer;
+fadeContainer = document.createElement(`div`);
+fadeContainer.style.position = `absolute`;
+fadeContainer.style.zIndex = `2222`;
+fadeContainer.id = `fadeContainer`;
+fadeContainer.style.width = `80%`;
+fadeContainer.style.height = `100%`;
+fadeContainer.style.left = `calc(300px + 5%)`;
+fadeContainer.style.pointerEvents = `none`;
+document.body.appendChild(fadeContainer);
+
+let countiesArr;
+function MapButtons() {
+  countiesArr = [
+    `Tompkins`,
+    `Cortland`,
+    `Chenango`,
+    `Osnego`,
+    `Delaware`,
+    `Greene`,
+    `Rensselaer`,
+    `Columbia`,
+    `Ulster`,
+    `Sullivan`,
+    `Broome`,
+  ];
+
+  let countiesRef = [];
+  for (let i = 0; i < countiesArr.length; i++) {
+    countiesRef.push(document.getElementById(`${countiesArr[i]}`));
+  }
+
+  for (let county of countiesRef) {
+    county.addEventListener(`click`, function () {
+      $(document.body).load(
+        `./levels/${county.id.toLowerCase()}/${county.id.toLowerCase()}.html`
+      );
+    });
+  }
+}
+
+let canSwap = true;
+function canSwapCheck() {
+  if (canSwap) {
+    canSwap = false;
+    setTimeout(function () {
+      canSwap = true;
+    }, 1000);
+  } else {
+    return false;
+  }
+  return true;
+}
+
+menuButton.addEventListener(`click`, function () {
+  if (canSwapCheck()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
+    setTimeout(function () {
+      $(`#container`).load(`./pages/menu/menu.html`);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+    }, 500);
+  }
+});
+
+shopButton.addEventListener(`click`, function () {
+  if (canSwapCheck()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
+    setTimeout(function () {
+      $(`#container`).load(`./pages/shop/shop.html`, drawShop);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+    }, 500);
+  }
+});
+
+loadoutButton.addEventListener(`click`, function () {
+  $(`#fadeContainer`).load(`./core/fade.html`);
+  setTimeout(function () {
+    $(`#container`).load(
+      `./pages/mission%20statement/mission%20statement.html`
+    );
+    if (document.getElementById(`gamblingAnimation`) != null)
+      document.getElementById(`gamblingAnimation`).remove();
+    document.getElementById(`container`).style.display = `block`;
+  }, 500);
+});
+
+battleButton.addEventListener(`click`, function () {
+  if (canSwapCheck()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
+    setTimeout(function () {
+      $(`#container`).load(`./pages/map/map.html`);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+      setTimeout(function () {
+        MapButtons();
+      }, 500);
+    }, 500);
+  }
+});
+
+gamblingButton.addEventListener(`click`, function () {
+  if (canSwapCheck()) {
+    $(`#fadeContainer`).load(`./core/fade.html`);
+    setTimeout(function () {
+      $(`#container`).load(`./pages/gambling/gambling.html`);
+      if (document.getElementById(`gamblingAnimation`) != null)
+        document.getElementById(`gamblingAnimation`).remove();
+      document.getElementById(`container`).style.display = `block`;
+    }, 500);
+  }
+});
+if (backExpensive !== null) {
+  backExpensive.addEventListener(`click`, function () {
+    if (canSwapCheck()) {
+      $(`#fadeContainer`).load(`./core/fade.html`);
+      setTimeout(function () {
+        $(`#container`).load(`./pages/gambling/gambling.html`);
+        if (document.getElementById(`gamblingAnimation`) != null)
+          document.getElementById(`gamblingAnimation`).remove();
+        document.getElementById(`container`).style.display = `block`;
+      }, 500);
+    }
+  });
+}
+
+const sybau = document.getElementsByTagName("button");
+let clickSound = new Audio("resources/images/sfx/click1.mp3");
+let hoverSound = new Audio("resources/images/sfx/hovering mouse.mp3");
+for (let button of sybau) {
+  button.addEventListener("mouseover", function () {
+    hoverSound.currentTime = 0;
+    //hoverSound.play();
+  });
+  button.addEventListener("click", function () {
+    clickSound.currentTime = 0;
+    //clickSound.play();
+  });
+}
+
+import { drawUnits, loadBattleUI } from "../../core/battle.js";
+import { units } from "../../core/cards.js";
+import { data } from "../../core/data.js";
+import { getInput12345 } from "../../core/input.js";
+import { Cleaner } from "../../core/units/cleaners.js";
+import { Trash } from "../../core/units/trash.js";
+
+export let win = true;
+
+let selectedCardsArray = data.selectedCards;
+let selectedCardsData = [];
+let unitKeys = Object.keys(units);
+
+for (let i in selectedCardsArray) {
+  i++;
+  selectedCardsData.push(units[unitKeys[i]]);
+}
+
+setTimeout(function () {
+	new Trash(`trash`);
+	setTimeout(drawUnits, 100);
+}, 5000);
+loadBattleUI();
+
+let input;
+setInterval(function () {
+  input = getInput12345();
+  for (let i in input) {
+    if (input[i]) {
+      if (i == 0) {
+        new Cleaner(`squirtMan`);
+      }
+      setTimeout(drawUnits, 100);
+    }
+  }
+}, 17);
+
+export let gumballColor = Math.round(Math.random() * 3) - 1;
+export let reward = Math.round(Math.random() * 100);
+
+let cheapButton = document.getElementById(`cheap`);
+let expensiveButton = document.getElementById(`expensive`);
+
+function main() {
+  let gamblingAnimation = document.createElement(`div`);
+  gamblingAnimation.style.position = `absolute`;
+  gamblingAnimation.id = `gamblingAnimation`;
+  gamblingAnimation.style.width = `80%`;
+  gamblingAnimation.style.height = `100%`;
+  gamblingAnimation.style.left = `calc(300px + 5%)`;
+  gamblingAnimation.style.zIndex = `-522`;
+  document.body.appendChild(gamblingAnimation);
+
+  cheapButton.addEventListener(`click`, function () {
+    let currentMicroplastics = parseInt(
+      localStorage.getItem(`microplastics`) || "0"
+    );
+
+    if (currentMicroplastics >= 100) {
+      localStorage.setItem(`microplastics`, currentMicroplastics - 100);
+
+      $(`#fadeContainer`).load(`./core/fade.html`);
+      setTimeout(function () {
+        $(`#gamblingAnimation`).load(`./pages/ui/gambling/cheap.html`);
+        document.getElementById(`container`).style.display = `none`;
+      }, 500);
+    }
+  });
+
+  expensiveButton.addEventListener(`click`, function () {
+    let currentMicroplastics = parseInt(
+      localStorage.getItem(`microplastics`) || "0"
+    );
+
+    if (currentMicroplastics >= 980) {
+      localStorage.setItem(`microplastics`, currentMicroplastics - 980);
+
+      $(`#fadeContainer`).load(`./core/fade.html`);
+      setTimeout(function () {
+        $(`#gamblingAnimation`).load(`./pages/ui/gambling/expensive.html`);
+        document.getElementById(`container`).style.display = `none`;
+      }, 500);
+    }
+  });
+}
+
+main();
+
+function main() {
+  const counties = {};
+  const countiesArr = [
+    `Tompkins`,
+    `Cortland`,
+    `Chenango`,
+    `Osnego`,
+    `Delaware`,
+    `Greene`,
+    `Rensselaer`,
+    `Columbia`,
+    `Ulster`,
+    `Sullivan`,
+    `Broome`,
+  ];
+
+  for (let i = 0; i < 10; i++) {
+    let countyName = countiesArr[i];
+    counties[countyName] = document.getElementById(countyName);
+
+    if (win) {
+      console.log(`undebug`);
+      counties[countyName].disabled = true;
+      console.log(`debug`);
+    }
+  }
+  const clickSound = new Audio("resources/images/sfx/click1.mp3");
+  const hoverSound = new Audio("resources/images/sfx/hovering mouse.mp3");
+}
+main();
+
+const scrollingText = document.getElementById(scrollingText);
+console.log(scrollingText)
+
+let streetsweepercard = document.getElementById(`streetsweepercard`);
+let cardContainer = document.getElementById(`card-container`);
+
+var shopContainer = document.getElementById(`shop-container`);
+var card;
+
+const cardArr = [`streetsweepercard`, `janitor`, `roomba`, `locked card`];
+const costArr = [
+  `lvl 1`,
+  `lvl 2`,
+  `lvl 3`,
+  `lvl 4`,
+  `lvl 5`,
+  `lvl 6`,
+  `lvl 7`,
+  `lvl 8`,
+  `lvl 9`,
+  `lvl 10`,
+];
+
+export function drawShop() {
+  while (shopContainer == null)
+    shopContainer = document.getElementById(`shop-container`);
+  shopContainer = document.getElementById(`shop-container`);
+  for (let i = 1; i <= 10; i++) {
+    card = document.createElement(`div`);
+    card.className = `card-container`;
+    card.style.transform = `translate(${108 * (i - 1) + 8}%)`;
+    shopContainer.appendChild(card);
+    card.style.width = `5.5%`;
+
+    let purchaseButton = document.createElement(`button`);
+    card.appendChild(purchaseButton);
+    purchaseButton.style.width = `90%`;
+    purchaseButton.style.aspectRatio = `5`;
+    purchaseButton.style.position = `absolute`;
+    purchaseButton.style.left = `5%`;
+    purchaseButton.style.top = `83.5%`;
+    purchaseButton.style.borderRadius = `3%/15%`;
+    purchaseButton.style.margin = `0`;
+    purchaseButton.style.padding = `0`;
+    purchaseButton.style.border = `none`;
+    purchaseButton.style.display = `flex`;
+    purchaseButton.style.alignItems = `center`;
+    purchaseButton.id = `purchaseButton${i}`;
+
+    let cardSlot = document.createElement(`img`);
+    card.appendChild(cardSlot);
+    cardSlot.style.width = `100%`;
+    cardSlot.style.height = `80%`;
+
+    if (cardArr[i - 1] == null) {
+      cardSlot.src = `./resources/images/card shop/${cardArr[3]}.png`;
+    } else {
+      cardSlot.src = `./resources/images/card shop/${cardArr[i - 1]}.png`;
+    }
+
+    let purchaseButtonText = document.createElement(`p`);
+    purchaseButton.appendChild(purchaseButtonText);
+    purchaseButtonText.style.width = `100%`;
+    purchaseButtonText.style.height = `20%`;
+    purchaseButtonText.style.position = `absolute`;
+
+    purchaseButtonText.style.zIndex = `50`;
+    purchaseButtonText.textContent = costArr[i - 1];
+    purchaseButtonText.style.color = `rgb(165, 165, 165)`;
+    purchaseButtonText.style.fontWeight = `1000`;
+    purchaseButtonText.style.fontSize = `300%`;
+    purchaseButtonText.style.bottom = `0`;
+    purchaseButtonText.style.textAlign = `center`;
+    purchaseButtonText.style.fontFamily = `monospace`;
+
+    if (i === 10) {
+      shopContainer.style.width = `${462 * i}px`;
+    }
+  }
+}
+
+const startButton = document.getElementById(`start button`);
+
+startButton.onclick = function () {
+  document.getElementById(`startMenu`).remove();
+  const ui = document.createElement(`div`);
+  document.body.appendChild(ui);
+  ui.id = `ui`;
+  ui.style.position = `absolute`;
+  ui.style.zIndex = `50`;
+  $("#ui").load(`./pages/ui/ui.html`);
+  $("#map")
+};
+
+const sybau = document.getElementsByTagName(`button`);
+const clickSound = new Audio("resources/images/sfx/click1.mp3");
+const hoverSound = new Audio("resources/images/sfx/hovering mouse.mp3");
+
+for (let button of sybau) {
+  button.addEventListener('click', function() {
+    clickSound.play()
+	}
+)} 
+
+import { gumballColor } from "../../gambling/gambling.js";
+import { reward } from "../../gambling/gambling.js";
+
+function calcReward(prize) {
+  if (prize <= 30) {
+    return 0;
+  } else if (prize <= 50) {
+    return 1;
+  } else if (prize <= 70) {
+    return 2;
+  } else if (prize <= 80) {
+    return 3;
+  } else if (prize <= 90) {
+    return 4;
+  } else if (prize < 95) {
+    return 5;
+  }
+}
+
+let gumballImage = document.getElementById("gumball");
+let prize = document.getElementById("prize");
+let currentMicroplastics = localStorage.getItem(`microplastics`);
+let finalPrize = calcReward(reward);
+
+
+
+const gumballArray = [`green gumball`, `red gumball`, `yellow gumball`];
+const rewardArray = [
+  `0 MICROPLASTICS :(`,
+  `80 MICROPLASTICS`,
+  `160 MICROPLASTICS`,
+  `300 MICROPLASTICS`,
+  `1000 MICROPLASTICS`,
+  `MR DICE!!!`,
+];
+const numberReward = [
+0,
+80,
+160,
+300,
+1000,
+0
+];
+
+gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]}.png`;
+
+gumballImage.addEventListener(`click`, function () {
+  gumballImage.style.opacity = `1`;
+
+  if (gumballImage.src.endsWith("gumball.png")) {
+    gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]} part 2.png`;
+  } else if (gumballImage.src.endsWith("2.png")) {
+    gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]} part 3.png`;
+  } else {
+    gumballImage.style.opacity = `0`;
+    
+    localStorage.setItem(`microplastics`, parseInt(currentMicroplastics) + numberReward[finalPrize]);
+    prize.textContent = `YOU WIN ${rewardArray[finalPrize]}`;
+
+    prize.style.fontFamily = `monospace`
+    prize.style.fontWeight = `1000`
+  }
+});
+
+setTimeout(() => {
+  
+}, 1000);
+
+import { gumballColor } from "../../gambling/gambling.js";
+import { reward } from "../../gambling/gambling.js";
+
+let gumballImage = document.getElementById("gumball");
+let prize = document.getElementById("prize");
+
+$(`#container`).load(`./core/menuswap`);
+
+function calcReward(prize) {
+  if (prize <= 30) {
+    return 0
+  } else if (prize > 30 && prize <= 60) {
+    return 1
+  } else if (prize > 60 && prize <= 80) {
+    return 2
+  } else if (prize > 80 && prize <= 90) {
+    return 3
+  } else if (prize > 90 && prize <= 99) {
+    return 4
+  } else if (prize === 100) {
+    return 5
+  }
+}
+
+
+
+const gumballArray = [`green gumball`, `red gumball`, `yellow gumball`];
+const rewardArray = [
+  `0 microplastics :(`,
+  `80 microplastics`,
+  `160 microplastics`,
+  `300 microplastics`,
+  `1000 microplastics`,
+  `MR DICE!!!`,
+];
+
+gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]}.png`;
+
+gumballImage.addEventListener(`click`, function () {
+  for (let i = 0; i <= 9; i++) {
+    gumballImage.style.opacity = `1`;
+    prize.textContent = ``;
+
+    if (gumballImage.src.endsWith("gumball.png")) {
+      gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]} part 2.png`;
+    } else if (gumballImage.src.endsWith("2.png")) {
+      gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]} part 3.png`;
+    } else {
+      gumballImage.style.opacity = `0`;
+      localStorage.getItem() = localStorage.setItem(rewardArray[rewardIndex])
+      prize.textContent = `You Win ${rewardArray[rewardIndex]}`;
+    }
+    console.log(`cool`);
+  }
+});
+
+function showCapital() {
+  let exp = localStorage.getItem(`exp`);
+  let microplastics = localStorage.getItem(`microplastics`);
+  let microplasticsNumbers = document.getElementById(`microplastics`);
+  let awarenessNumbers = document.getElementById(`awareness`);
+
+  if (microplasticsNumbers != null)
+    microplasticsNumbers.textContent = `MICROPLASTICS: ${microplastics}`;
+  // if (awarenessNumbers != null)
+  // 	awarenessNumbers.textContent = `AWARENESS: ${exp}`;
+}
+
+showCapital();
+
+setInterval(showCapital, 100);

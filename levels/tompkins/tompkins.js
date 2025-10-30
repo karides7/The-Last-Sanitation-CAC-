@@ -12,8 +12,8 @@ let selectedCardsData = [];
 let unitKeys = Object.keys(units);
 
 for (let i in selectedCardsArray) {
-  i++;
-  selectedCardsData.push(units[unitKeys[i]]);
+	i++;
+	selectedCardsData.push(units[unitKeys[i]]);
 }
 
 setTimeout(function () {
@@ -24,13 +24,16 @@ loadBattleUI();
 
 let input;
 setInterval(function () {
-  input = getInput12345();
-  for (let i in input) {
-    if (input[i]) {
-      if (i == 0) {
-        new Cleaner(`squirtMan`);
-      }
-      setTimeout(drawUnits, 100);
-    }
-  }
+	input = getInput12345();
+	for (let i in input) {
+		if (input[i]) {
+			if (i == 0) {
+				new Cleaner(`squirtMan`);
+			}
+			if (i == 1) {
+				new Cleaner(`streetSweeper`);
+			}
+			setTimeout(drawUnits, 100);
+		}
+	}
 }, 17);
