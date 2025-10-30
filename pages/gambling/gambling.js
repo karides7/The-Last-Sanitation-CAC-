@@ -1,5 +1,5 @@
-export let gumballColor = Math.ceil(Math.random() * 3) - 1;
-export let reward = Math.ceil(Math.random() * 100);
+export let gumballColor = Math.round(Math.random() * 3);
+export let reward = Math.round(Math.random() * 100);
 
 let cheapButton = document.getElementById(`cheap`);
 let expensiveButton = document.getElementById(`expensive`);

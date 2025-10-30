@@ -19,7 +19,7 @@ document.body.appendChild(container);
 let fadeContainer;
 fadeContainer = document.createElement(`div`);
 fadeContainer.style.position = `absolute`;
-fadeContainer.style.zIndex = 2222;
+fadeContainer.style.zIndex = `2222`;
 fadeContainer.id = `fadeContainer`;
 fadeContainer.style.width = `80%`;
 fadeContainer.style.height = `100%`;
@@ -47,6 +47,7 @@ function MapButtons() {
   for (let i = 0; i < countiesArr.length; i++) {
     countiesRef.push(document.getElementById(`${countiesArr[i]}`));
   }
+  
   for (let county of countiesRef) {
     county.addEventListener(`click`, function () {
       $(document.body).load(
@@ -96,7 +97,7 @@ shopButton.addEventListener(`click`, function () {
 loadoutButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
-    $(`#container`).load(`./pages/menu/menu.html`);
+    $(`#container`).load(`./pages/mission%20statement/mission%20statement.html`);
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
     document.getElementById(`container`).style.display = `block`;
@@ -129,6 +130,8 @@ gamblingButton.addEventListener(`click`, function () {
     }, 500);
   }
 });
+
+
 
 const sybau = document.getElementsByTagName("button");
 let clickSound = new Audio("resources/images/sfx/click1.mp3");
