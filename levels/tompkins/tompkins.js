@@ -23,9 +23,9 @@ setTimeout(drawUnits, 100);
 let input;
 setInterval(function () {
 	input = getInput12345();
-}, 500);
-
-for (let i in input) {
-	if (input[i] && !cooldowns[i]) {
+	for (let i in input) {
+		if (input[i]) {
+			console.log(i);
+		}
 	}
-}
+}, 17);
