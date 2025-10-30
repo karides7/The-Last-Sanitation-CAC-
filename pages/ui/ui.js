@@ -6,8 +6,8 @@ function showCapital() {
 
   if (microplasticsNumbers != null)
     microplasticsNumbers.textContent = `MICROPLASTICS: ${microplastics}`;
-  // if (awarenessNumbers != null)
-  // 	awarenessNumbers.textContent = `AWARENESS: ${exp}`;
+  if (awarenessNumbers != null)
+   	awarenessNumbers.textContent = `AWARENESS LEVEL: ${exp}`;
 }
 
 showCapital();
