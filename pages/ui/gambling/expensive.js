@@ -3,6 +3,23 @@ import { reward } from "../../gambling/gambling.js";
 
 let gumballImage = document.getElementById("gumball");
 let prize = document.getElementById("prize");
+let backExpensive = document.getElementById("backExpensive");
+
+function calcReward(prize) {
+  if (prize <= 30) {
+    return 0
+  } else if (prize > 30 && prize <= 60) {
+    return 1
+  } else if (prize > 60 && prize <= 80) {
+    return 2
+  } else if (prize > 80 && prize <= 90) {
+    return 3
+  } else if (prize > 90 && prize <= 99) {
+    return 4
+  } else if (prize === 100) {
+    return 5
+  }
+}
 
 const gumballArray = [`green gumball`, `red gumball`, `yellow gumball`];
 const rewardArray = [
@@ -27,7 +44,8 @@ gumballImage.addEventListener(`click`, function () {
       gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]} part 3.png`;
     } else {
       gumballImage.style.opacity = `0`;
-      prize.textContent = `You Win ${rewardArray[reward]}`;
+      localStorage.getItem() = localStorage.setItem(rewardArray[rewardIndex])
+      prize.textContent = `You Win ${rewardArray[rewardIndex]}`;
     }
     console.log(`cool`);
   }
