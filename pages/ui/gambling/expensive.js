@@ -16,7 +16,7 @@ const rewardArray = [
 
 gumballImage.src = `/Resources/images/Gumballs/${gumballArray[gumballColor]}.png`;
 
-gumballImage.addEventListener(`click`, async function () {
+gumballImage.addEventListener(`click`, function () {
   for (let i = 0; i <= 9; i++) {
     gumballImage.style.opacity = `1`;
     prize.textContent = ``;
