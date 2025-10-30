@@ -21,10 +21,7 @@ units[`squirtMan`] = {
 	friendly: true,
 	cost: 100,
 	health: 500,
-	attackSpeed: 1,
-	attackMelee: 10,
-	attackRanged: 0,
-	attackSplash: 0,
+	damage: 1,
 	images: {
 		idleFrame: `./resources/images/units/squirtMan/1.png`,
 		movementFrames: [
@@ -57,12 +54,15 @@ units[`trash`] = {
 	friendly: false,
 	health: 250,
 	attackInterval: 0.25,
-	attackMelee: 3,
+	damage: 0.5,
 	attackRanged: 0,
 	attackSplash: 0,
 	images: {
-		idleFrames: [],
-		movementFrames: [],
-		attackFrames: [],
+		idleFrame: `./resources/images/units/trash/1.png`,
+		movementFrames: [
+			`./resources/images/units/trash/1.png`,
+			`./resources/images/units/trash/3.png`,
+		],
+		attackFrames: [`./resources/images/units/trash/2.png`],
 	},
 };

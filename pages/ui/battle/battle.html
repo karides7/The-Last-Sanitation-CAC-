@@ -14,10 +14,12 @@
 				background-color: rgb(102, 102, 102);
 				position: absolute;
 				top: 0%;
+				transition: all 0.2s ease-in;
 				border: rgb(0, 0, 0) 5px solid;
 			}
 
 			.cardContainer:hover {
+				transition: all 0s ease-in;
 				border: rgb(255, 255, 255) 5px solid;
 			}
 
@@ -39,13 +41,7 @@
 
 	<body>
 		<div
-			style="
-				width: 100%;
-				height: 27vh;
-				background-color: gray;
-				position: absolute;
-				top: 73vh;
-			"
+			style="width: 100%; height: 27vh; position: absolute; top: 73vh"
 		></div>
 		<div
 			id="cardUnitsContainer"
@@ -59,16 +55,16 @@
 			"
 		></div>
 		<script>
-			// let cardUnitsContainer =
-			// 	document.getElementById("cardUnitsContainer");
-			// for (let i = 1; i <= 5; i++) {
-			// 	let cardContainer = document.createElement(`div`);
-			// 	cardUnitsContainer.appendChild(cardContainer);
-			// 	cardContainer.className = `cardContainer`;
-			// 	cardContainer.style.transform = `translate(${
-			// 		109.25 * (i - 1) + 10
-			// 	}%)`;
-			// }
+			let cardUnitsContainer =
+				document.getElementById("cardUnitsContainer");
+			for (let i = 1; i <= 5; i++) {
+				let cardContainer = document.createElement(`div`);
+				cardUnitsContainer.appendChild(cardContainer);
+				cardContainer.className = `cardContainer`;
+				cardContainer.style.transform = `translate(${
+					109.25 * (i - 1) + 10
+				}%)`;
+			}
 		</script>
 	</body>
 </html>

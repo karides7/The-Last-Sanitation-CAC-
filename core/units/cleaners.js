@@ -1,4 +1,5 @@
 import { units } from "../cards.js";
+import { trashInstances } from "./trash.js";
 
 export const cleanerInstances = [];
 
@@ -75,14 +76,48 @@ export class Cleaner {
 				this.sprite.src = this.data[`images`][`movementFrames`][1];
 			}
 
-			if (this.position < 79.5) {
+			if (this.position < 76.5) {
 				this.position += this.speedMultiplier * delta * 0.008;
 			} else {
 				this.moving = false;
 			}
 			this.container.style.left = `${this.position}%`;
 		} else {
-			console.log(this.data[`images`][`idlesFrames`]);
+			this.sprite.src = this.data[`images`][`idleFrame`];
+		}
+
+		for (let trash of trashInstances) {
+			let distance = Math.abs(trash.position - this.position);
+			if (distance < 10) {
+				this.moving = false;
+				this.attacking = true;
+			} else {
+				this.attacking = false;
+				if (this.position < 76.5) {
+					this.moving = true;
+				}
+			}
+			if (this.attacking) {
+				trash.health -= (delta / 10) * this.data.damage;
+				trash.updateHealthMeter();
+
+				if (Math.round(this.time) % 2 == 0) {
+					this.sprite.src = this.data[`images`][`attackFrames`][0];
+				} else {
+					this.sprite.src = this.data[`images`][`attackFrames`][1];
+				}
+			}
+		}
+
+		if (this.health <= 0) {
+			cleanerInstances.splice(cleanerInstances.indexOf(this), 1);
+			this.container.remove();
+			delete this;
+			this.moving = true;
+		}
+
+		if (trashInstances.length == 0 && this.position < 76.5) {
+			this.moving = true;
 		}
 	}
 
@@ -90,14 +125,5 @@ export class Cleaner {
 		this.healthContainerInternal.style.width = `${
 			(this.health / this.startingHealth) * 96.5
 		}%`;
-	}
-
-	getPosition() {
-		let rect = this.container.getBoundingClientRect();
-		return [rect.x, rect.y];
-	}
-
-	damage(amount) {
-		this.health -= amount;
 	}
 }

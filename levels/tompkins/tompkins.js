@@ -14,17 +14,20 @@ for (let i in selectedCardsArray) {
 	selectedCardsData.push(units[unitKeys[i]]);
 }
 
-new Cleaner(`squirtMan`);
+new Trash(`trash`);
+setTimeout(drawUnits, 100);
 
 loadBattleUI();
-setTimeout(drawUnits, 100);
 
 let input;
 setInterval(function () {
 	input = getInput12345();
 	for (let i in input) {
 		if (input[i]) {
-			console.log(i);
+			if (i == 0) {
+				new Cleaner(`squirtMan`);
+			}
+			setTimeout(drawUnits, 100);
 		}
 	}
 }, 17);
