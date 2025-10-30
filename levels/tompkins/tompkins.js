@@ -5,26 +5,32 @@ import { getInput12345 } from "../../core/input.js";
 import { Cleaner } from "../../core/units/cleaners.js";
 import { Trash } from "../../core/units/trash.js";
 
+export let win = true;
+
 let selectedCardsArray = data.selectedCards;
 let selectedCardsData = [];
 let unitKeys = Object.keys(units);
 
 for (let i in selectedCardsArray) {
-	i++;
-	selectedCardsData.push(units[unitKeys[i]]);
+  i++;
+  selectedCardsData.push(units[unitKeys[i]]);
 }
 
-new Cleaner(`squirtMan`);
-
+setTimeout(function () {
+	new Trash(`trash`);
+	setTimeout(drawUnits, 100);
+}, 5000);
 loadBattleUI();
-setTimeout(drawUnits, 100);
 
 let input;
 setInterval(function () {
-	input = getInput12345();
-	for (let i in input) {
-		if (input[i]) {
-			console.log(i);
-		}
-	}
+  input = getInput12345();
+  for (let i in input) {
+    if (input[i]) {
+      if (i == 0) {
+        new Cleaner(`squirtMan`);
+      }
+      setTimeout(drawUnits, 100);
+    }
+  }
 }, 17);
