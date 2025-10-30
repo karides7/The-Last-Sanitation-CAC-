@@ -91,15 +91,12 @@ export class Cleaner {
 			if (distance < 10) {
 				this.moving = false;
 				this.attacking = true;
-			} else {
-				this.attacking = false;
-				if (this.position < 76.5) {
-					this.moving = true;
-				}
 			}
 			if (this.attacking) {
-				trash.health -= (delta / 10) * this.data.damage;
-				trash.updateHealthMeter();
+				if (distance < 10) {
+					trash.health -= (delta / 10) * this.data.damage;
+					trash.updateHealthMeter();
+				}
 
 				if (Math.round(this.time) % 2 == 0) {
 					this.sprite.src = this.data[`images`][`attackFrames`][0];

@@ -14,9 +14,10 @@ for (let i in selectedCardsArray) {
 	selectedCardsData.push(units[unitKeys[i]]);
 }
 
-new Trash(`trash`);
-setTimeout(drawUnits, 100);
-
+setTimeout(function () {
+	new Trash(`trash`);
+	setTimeout(drawUnits, 100);
+}, 5000);
 loadBattleUI();
 
 let input;
