@@ -5,14 +5,20 @@ units[`streetSweeper`] = {
 	friendly: true,
 	cost: 100,
 	health: 500,
-	attackSpeed: 1,
+	damage: 1,
 	attackMelee: 10,
 	attackRanged: 0,
 	attackSplash: 0,
 	images: {
-		idleFrames: [],
-		movementFrames: [],
-		attackFrames: [],
+		idleFrames: [`./resources/images/units/streetSweeper/1.png`],
+		movementFrames: [
+			`./resources/images/units/streetSweeper/2.png`,
+			`./resources/images/units/streetSweeper/3.png`,
+		],
+		attackFrames: [
+			`./resources/images/units/streetSweeper/4.png`,
+			`./resources/images/units/streetSweeper/5.png`,
+		],
 	},
 };
 
