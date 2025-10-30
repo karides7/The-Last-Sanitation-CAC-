@@ -14,8 +14,7 @@ for (let i in selectedCardsArray) {
 	selectedCardsData.push(units[unitKeys[i]]);
 }
 
-new Cleaner(`streetSweeper`);
-new Trash(`trash1`);
+new Cleaner(`squirtMan`);
 
 loadBattleUI();
 setTimeout(drawUnits, 100);

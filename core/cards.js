@@ -16,6 +16,28 @@ units[`streetSweeper`] = {
 	},
 };
 
+units[`squirtMan`] = {
+	name: `Squirt Man`,
+	friendly: true,
+	cost: 100,
+	health: 500,
+	attackSpeed: 1,
+	attackMelee: 10,
+	attackRanged: 0,
+	attackSplash: 0,
+	images: {
+		idleFrame: `./resources/images/units/squirtMan/1.png`,
+		movementFrames: [
+			`./resources/images/units/squirtMan/2.png`,
+			`./resources/images/units/squirtMan/3.png`,
+		],
+		attackFrames: [
+			`./resources/images/units/squirtMan/4.png`,
+			`./resources/images/units/squirtMan/5.png`,
+		],
+	},
+};
+
 units[`roomba`] = {
 	friendly: true,
 	cost: 300,
