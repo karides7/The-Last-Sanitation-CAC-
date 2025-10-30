@@ -5,6 +5,7 @@ let shopButton = document.getElementById(`shop-button`);
 let loadoutButton = document.getElementById(`mission-button`);
 let battleButton = document.getElementById(`battle-button`);
 let gamblingButton = document.getElementById(`gambling-button`);
+let backExpensive = document.getElementById(`backExpensive`);
 
 let container;
 container = document.createElement(`div`);
@@ -47,7 +48,7 @@ function MapButtons() {
   for (let i = 0; i < countiesArr.length; i++) {
     countiesRef.push(document.getElementById(`${countiesArr[i]}`));
   }
-  
+
   for (let county of countiesRef) {
     county.addEventListener(`click`, function () {
       $(document.body).load(
@@ -97,7 +98,9 @@ shopButton.addEventListener(`click`, function () {
 loadoutButton.addEventListener(`click`, function () {
   $(`#fadeContainer`).load(`./core/fade.html`);
   setTimeout(function () {
-    $(`#container`).load(`./pages/mission%20statement/mission%20statement.html`);
+    $(`#container`).load(
+      `./pages/mission%20statement/mission%20statement.html`
+    );
     if (document.getElementById(`gamblingAnimation`) != null)
       document.getElementById(`gamblingAnimation`).remove();
     document.getElementById(`container`).style.display = `block`;
@@ -130,8 +133,19 @@ gamblingButton.addEventListener(`click`, function () {
     }, 500);
   }
 });
-
-
+if (backExpensive !== null) {
+  backExpensive.addEventListener(`click`, function () {
+    if (canSwapCheck()) {
+      $(`#fadeContainer`).load(`./core/fade.html`);
+      setTimeout(function () {
+        $(`#container`).load(`./pages/gambling/gambling.html`);
+        if (document.getElementById(`gamblingAnimation`) != null)
+          document.getElementById(`gamblingAnimation`).remove();
+        document.getElementById(`container`).style.display = `block`;
+      }, 500);
+    }
+  });
+}
 
 const sybau = document.getElementsByTagName("button");
 let clickSound = new Audio("resources/images/sfx/click1.mp3");

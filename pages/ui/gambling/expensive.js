@@ -3,7 +3,8 @@ import { reward } from "../../gambling/gambling.js";
 
 let gumballImage = document.getElementById("gumball");
 let prize = document.getElementById("prize");
-let backExpensive = document.getElementById("backExpensive");
+
+$(`#container`).load(`./core/menuswap`);
 
 function calcReward(prize) {
   if (prize <= 30) {
@@ -20,6 +21,8 @@ function calcReward(prize) {
     return 5
   }
 }
+
+
 
 const gumballArray = [`green gumball`, `red gumball`, `yellow gumball`];
 const rewardArray = [
