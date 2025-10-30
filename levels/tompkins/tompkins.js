@@ -10,8 +10,8 @@ let selectedCardsData = [];
 let unitKeys = Object.keys(units);
 
 for (let i in selectedCardsArray) {
-  i++;
-  selectedCardsData.push(units[unitKeys[i]]);
+	i++;
+	selectedCardsData.push(units[unitKeys[i]]);
 }
 
 new Cleaner(`streetSweeper`);
@@ -22,10 +22,10 @@ setTimeout(drawUnits, 100);
 
 let input;
 setInterval(function () {
-  input = getInput12345();
-}, 500);
-
-for (let i in input) {
-  if (input[i] && !cooldowns[i]) {
-  }
-}
+	input = getInput12345();
+	for (let i in input) {
+		if (input[i]) {
+			console.log(i);
+		}
+	}
+}, 17);
