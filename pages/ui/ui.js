@@ -3,11 +3,12 @@ function showCapital() {
   let microplastics = localStorage.getItem(`microplastics`);
   let microplasticsNumbers = document.getElementById(`microplastics`);
   let awarenessNumbers = document.getElementById(`awareness`);
+  let levelcontainer = document.getElementById(`levelcontainer`)
 
   if (microplasticsNumbers != null)
     microplasticsNumbers.textContent = `MICROPLASTICS: ${microplastics}`;
-  if (awarenessNumbers != null)
-   	awarenessNumbers.textContent = `AWARENESS LEVEL: ${exp}`;
+
+  levelcontainer.textContent = ` AWARENESS LEVEL: ${exp}`;
 }
 
 showCapital();
